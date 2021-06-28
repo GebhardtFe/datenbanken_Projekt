@@ -7,10 +7,10 @@ public class Einheit {
         this.plätze=plätze;
     }
 
-    public Einheit(ResultSet reseinheit){
+    public Einheit(ResultSet resEinheit){
         try {
-            this.bezeichnung = reseinheit.getString("bezeichnung");
-            this.plätze = reseinheit.getInt("plätze");
+            this.bezeichnung = resEinheit.getString("bezeichnung");
+            this.plätze = resEinheit.getInt("plätze");
         }
         catch(SQLException e){
             e.printStackTrace();

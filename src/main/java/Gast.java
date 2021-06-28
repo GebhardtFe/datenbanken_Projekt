@@ -13,14 +13,14 @@ public class Gast {
         this.svnr=svnr;
     }
 
-    public Gast(ResultSet resgast){
+    public Gast(ResultSet resGast){
 
         try {
-            this.vorname = resgast.getString("vorname);
-            this.nachname = resgast.getString("nachname");
-            this.titel = resgast.getString("titel");
-            this.geburtsdatum = resgast.getDate("geburtsdatum");
-            this.svnr= resgast.getInt("snvr");
+            this.vorname = resGast.getString("vorname);
+            this.nachname = resGast.getString("nachname");
+            this.titel = resGast.getString("titel");
+            this.geburtsdatum = resGast.getString("geburtsdatum");
+            this.svnr= resGast.getInt("snvr");
         }
         catch(SQLException e){
             e.printStackTrace();
