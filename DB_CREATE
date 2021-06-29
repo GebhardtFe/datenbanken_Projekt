@@ -100,4 +100,76 @@ CREATE TABLE bucht (
 	CONSTRAINT buchtPK primary key  (buchungsNr)
 );
 
+insert into adresse(plz, stadt, strasse, hausnummer, land, interneid) values ('4020', 'Seestadt', 'Kuestenweg', '22', 'Oesterreich', '1');
+insert into adresse(plz, stadt, strasse, hausnummer, land, interneid) values ('34100', 'Triest', 'Via Lagunare', '6', 'Italien', '2');
+insert into adresse(plz, stadt, strasse, hausnummer, land, interneid) values ('9020', 'Klagenfurt', 'Am Lendhafen', '1', 'Oesterreich', '3');
+insert into adresse(plz, stadt, strasse, hausnummer, land, interneid) values ('4260', 'Bled', 'Ojstrica', '13', 'Slowenien', '4');
+insert into adresse(plz, stadt, strasse, hausnummer, land, interneid) values ('9103', 'Eberstein', 'Eberweg', '9', 'Oesterreich', '5');
+
+insert into beherbergungsbetrieb(gastroid, betriebname, webseite, typ) values ('1','Villa Sofia', 'villa-sofia.at', 'Pension');
+insert into beherbergungsbetrieb(gastroid, betriebname, webseite, typ) values ('2','Apartment Verona', 'triestapartmentverona.it', 'Ferienwohnung');
+insert into beherbergungsbetrieb(gastroid, betriebname, webseite, typ) values ('3','Wohlfühlhaus am Lendhafen', 'ferienhauslend.at', 'Ferienhaus');
+insert into beherbergungsbetrieb(gastroid, betriebname, webseite, typ) values ('4','Apartment Ribno', 'ribnoapartment.sl', 'Ferienwohnung');
+insert into beherbergungsbetrieb(gastroid, betriebname, webseite, typ) values ('5','Ferienhaus "Kloans Häusle"', 'kloanshaeusleeberstein.at', 'Ferienhaus');
+
+insert into bestehtaus(interneid, zimmernr, kategorienr, vondatum, bisdatum, pensionstyp) values('2', '5', '1','2021-06-12','2021-06-19','Halbpension');
+insert into bestehtaus(interneid, zimmernr, kategorienr, vondatum, bisdatum, pensionstyp) values('2', '16', '2','2021-03-01','2021-03-06','Vollpension');
+insert into bestehtaus(interneid, zimmernr, kategorienr, vondatum, bisdatum, pensionstyp) values('2', '11', '2','2021-06-20','2021-07-01','Vollpension');
+insert into bestehtaus(interneid, zimmernr, kategorienr, vondatum, bisdatum, pensionstyp) values('3', '1', '3','2021-05-03','2021-05-08', 'Frühstück');
+insert into bestehtaus(interneid, zimmernr, kategorienr, vondatum, bisdatum, pensionstyp) values('5', '2', '4','2021-04-31','2021-05-16','ohne');
+
+
+insert into bucht(buchungsnr, svnr, zimmernr) values ('01','2345121268','5');
+insert into bucht(buchungsnr, svnr, zimmernr) values ('02','6745010574','16');
+insert into bucht(buchungsnr, svnr, zimmernr) values ('03','7882301092','11');
+insert into bucht(buchungsnr, svnr, zimmernr) values ('04','4309070376','1');
+insert into bucht(buchungsnr, svnr, zimmernr) values ('05','3874040783','2');
+
+insert into buchung(buchungsnr, anreisetag, abreisetag) values ('01','2021-06-12','2021-06-19');
+insert into buchung(buchungsnr, anreisetag, abreisetag) values ('02','2021-03-01','2021-03-06');
+insert into buchung(buchungsnr, anreisetag, abreisetag) values ('03','2021-06-20','2021-07-01');
+insert into buchung(buchungsnr, anreisetag, abreisetag) values ('04','2021-05-03','2021-05-08');
+insert into buchung(buchungsnr, anreisetag, abreisetag) values ('05','2021-04-31','2021-05-16');
+
+insert into einheit(zimmernr, bezeichnung, anzahlplaetze) values('5', 'Standardzimmer', '2');
+insert into einheit(zimmernr, bezeichnung, anzahlplaetze) values('16', 'Deluxe Suite','2');
+insert into einheit(zimmernr, bezeichnung, anzahlplaetze) values('11','Deluxe Suite', '2');
+insert into einheit(zimmernr, bezeichnung, anzahlplaetze) values('1', 'Komfort Apartment', '4');
+insert into einheit(zimmernr, bezeichnung, anzahlplaetze) values('2', 'Basisangebot', '8');
+
+insert into gast(svnr, vorname, nachname, titel, geburtsdatum, plz, strasse, hausnummer, telefonnummer) values ('2345121268', 'Hans', 'Kautz', '', '1968-12-12', '9020', 'Klagenfurt', 'Waldweg' ,'3', '0660654783201');
+insert into gast(svnr, vorname, nachname, titel, geburtsdatum, plz, strasse, hausnummer, telefonnummer) values ('6745010574', 'Paula', 'Hofer', 'Dr.', '1974-05-01', '3441', 'Oberndorf', 'Kernstrasse', '6', '06643209987');
+insert into gast(svnr, vorname, nachname, titel, geburtsdatum, plz, strasse, hausnummer, telefonnummer) values ('7882301092', 'August', 'Zeppelin', 'Dipl.-Ing.','1992-10-30', '8010', 'Graz', 'Rasterplatz', '17', '069940301023');
+insert into gast(svnr, vorname, nachname, titel, geburtsdatum, plz, strasse, hausnummer, telefonnummer) values ('4309070376', 'Marta','Grainer', '', '1976-03-07', '1010', 'Wien', 'Ringstrasse', '2', '06605643209');
+insert into gast(svnr, vorname, nachname, titel, geburtsdatum, plz, strasse, hausnummer, telefonnummer) values ('3874040783', 'Sam', 'Martins', 'Bsc. Msc. Msc.','1983-07-04', '2301', 'Wien', 'Adelheidgasse','9', '06990845367');
+
+insert into hotel(gastroid, betriebsname, webseite, typ, anzahlsterne) values ('6', 'Hotel Royale', 'hotelroyalklagenfurt.at', 'Hotel', '5');
+insert into hotel(gastroid, betriebsname, webseite, typ, anzahlsterne) values ('7', 'Hotel Seeblick', 'seeblickfaakersee.at', 'Hotel', '4');
+insert into hotel(gastroid, betriebsname, webseite, typ, anzahlsterne) values ('8', 'Deluxe Hotels Laguna', 'lagunahotelsgrado.uno', 'Hotel', '5');
+insert into hotel(gastroid, betriebsname, webseite, typ, anzahlsterne) values ('9', 'Hotel zur Post', 'hotelzurpostwolfsberg.at','Hotel', '3');
+insert into hotel(gastroid, betriebsname, webseite, typ, anzahlsterne) values ('10', 'Hotel Marquesa', 'marquesamerano.it', 'Hotel','4');
+
+insert into kategorie(kategorienr, bezeichnung, beschreibungstext, anzahlbetten, flaeche) values ('1', 'Standardzimmer', 'Geschmackvoll eingerichtetes Zimmer in familaerer Pension', '1' , '20');
+insert into kategorie(kategorienr, bezeichnung, beschreibungstext, anzahlbetten, flaeche) values ('2','Deluxe Suite', 'Mehr Platz und eine eigene Terasse mit Whirlpool! Unsere Deluxe Suiten bieten einfach mehr.', '1','60');
+insert into kategorie(kategorienr, bezeichnung, beschreibungstext, anzahlbetten, flaeche) values ('3','Komfort Apartment', 'Stilvolle Apartments mit exquisiter Ausstattung', '3', '104);
+insert into kategorie(kategorienr, bezeichnung, beschreibungstext, anzahlbetten, flaeche) values('4', 'Basisangebot' , 'Zweistoekiges Ferienhaus mit eigenem Garten', '8', 130);
+insert into kategorie(kategorienr, bezeichnung, beschreibungstext, anzahlbetten, flaeche) values ('5', 'Familiensuite', 'Extra Kinderzimmer für den Nachwuchs', '3', '40');
+
+insert into kontaktdaten(telefonnummer, email, fax, interneid) values ('069970804032', 'villasofia@gmail.com', '1485893838', '1');
+insert into kontaktdaten(telefonnummer, email, fax, interneid) values ('+39784078920', 'rezeption@veronaapartments.it', '43733737', '2');
+insert into kontaktdaten(telefonnummer, email, fax, interneid) values ('066489382022', 'ferienapartmentamlendhafen@gmx.at', '3');
+insert into kontaktdaten(telefonnummer, email, fax, interneid) values ('00386 34097863', 'ribnoapartment@gmail.com', '4');
+insert into kontaktdaten(telefonnummer, email, fax, interneid) values ('06653393733', 'ferienhausebner@gmail.com', '5');
+
+insert into preis (vondatum, bisdatum, pensionstyp) values ('2021-06-12','2021-06-19','Halbpension');
+insert into preis (vondatum, bisdatum, pensionstyp) values ('2021-03-01','2021-03-06','Vollpension');
+insert into preis (vondatum, bisdatum, pensionstyp) values ('2021-06-20','2021-07-01','Vollpension');
+insert into preis (vondatum, bisdatum, pensionstyp) values ('2021-05-03','2021-05-08', 'Frühstück');
+insert into preis (vondatum, bisdatum, pensionstyp) values ('2021-04-30','2021-05-16','ohne');
+
+insert into socialmedia (benutzername, passwort, interneid, typ) values ('Apartments Verona', 'verona0342facebook', '2', 'Facebook');
+insert into socialmedia (benutzername, passwort, interneid, typ) values ('Triest Apartments Verona', 'verona0342twitter', '2', 'twitter');
+insert into socialmedia (benutzername, passwort, interneid, typ) values ('ribnoapartment', 'zdh38dn2k2','4','instagram');
+insert into socialmedia (benutzername, passwort, interneid, typ) values ('ferienhausebner', '03ebner04af','5','twitter');
+insert into socialmedia (benutzername, passwort, interneid, typ) values ('ferienhausebner34','03ebner04af','5','twitter' );
 
