@@ -1,3 +1,4 @@
+import java.sql.*;
 public class Adresse{
     int plz;
     String stadt;
@@ -22,6 +23,16 @@ public class Adresse{
             this.land=resAdresse.getString("land");
         }
         catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+    public void insertAdress(Connection connection){
+        String sql = "insert into pg_tables@adresse values(`"+plz+"`,`"+stadt+"`,`"+straße+"`,`"+hausnummer+"`,`"+land+"`);";
+        try{
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(sql);
+            statement.close();
+        }catch (SQLException e){
             e.printStackTrace();
         }
     }

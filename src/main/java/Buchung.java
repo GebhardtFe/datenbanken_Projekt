@@ -1,3 +1,4 @@
+import java.sql.*;
 public class Buchung{
     Date anreisetag;
     Date abreisetag;
@@ -15,6 +16,16 @@ public class Buchung{
             this.buchungsNr=resBuchung.getInt("buchungsNr");
         }
         catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+    public void insertBuchung(Connection connection){
+        String sql = "insert into pg_tables@buchung values(`"+buchungsNr+"`,`"+anreisetag+"`,`"+abreisetag+"`);";
+        try{
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(sql);
+            statement.close();
+        }catch (SQLException e){
             e.printStackTrace();
         }
     }

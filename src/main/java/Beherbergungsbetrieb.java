@@ -1,10 +1,11 @@
+import java.sql.*;
 public class Beherbergungsbetrieb {
     int id;
     String name;
     String website;
-    enum typ;
+    String typ;
 
-    public Beherberungsbetrieb(int id, String name, String website, enum typ){
+    public Beherbergungsbetrieb(int id, String name, String website, String typ){
         this.id=id;
         this.name=name;
         this.website=website;
@@ -16,9 +17,20 @@ public class Beherbergungsbetrieb {
             this.id = resBeherbergungsbetrieb.getInt("id");
             this.name = resBeherbergungsbetrieb.getString("name");
             this.website = resBeherbergungsbetrieb.getString("website");
-            this.typ = resBeherbergungsbetrieb.getEnum("typ");
+            this.typ = resBeherbergungsbetrieb.getString("typ");
         }
         catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void insertBeherbergungsbetrieb(Connection connection){
+        String sql = "insert into pg_tables@beherbergungsbetrieb values(`"+id+"`,`"+name+"`,`"+website+"`,`"+typ+"`);";
+        try{
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(sql);
+            statement.close();
+        }catch (SQLException e){
             e.printStackTrace();
         }
     }

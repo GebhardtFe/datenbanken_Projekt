@@ -1,0 +1,103 @@
+CREATE TABLE beherbergungsbetrieb (
+    gastroID int not null,
+    betriebName varchar(255),
+    webseite varchar(255),
+    typ varchar(255),
+	CONSTRAINT gastroPK primary key  (gastroID)
+);
+CREATE TABLE hotel (
+    gastroID int not null,
+    betriebName varchar(255),
+    webseite varchar(255),
+    typ varchar(255),
+	anzahlSterne int,
+	CONSTRAINT hotelPK primary key  (gastroID)
+);
+CREATE TABLE SocialMedia (
+    benutzername varchar(255) not null,
+	passwort varchar(255) not null,
+    interneID int not null,
+    typ varchar(255),
+	CONSTRAINT socialPK primary key  (benutzername, passwort)
+);
+CREATE TABLE gast (
+    svnr int not null,
+	vorname varchar(255),
+	nachname varchar(255),
+	titel varchar(255),
+	geburtsdatum date,
+	plz int not null,
+	strasse varchar(255) not null,
+	hausnummer int not null,
+	telefonnummer int not null,
+	
+	CONSTRAINT gastPK primary key  (svnr)
+);
+CREATE TABLE Kategorie (
+    kategorieNr int not null,
+	bezeichnung varchar(255),
+	beschreibungstext varchar(255),
+	anzahlBetten int,
+	flaeche float, 
+	
+	CONSTRAINT kategoriePK primary key  (kategorieNr)
+);
+CREATE TABLE einheit (
+    zimmerNr int not null,
+	bezeichnung varchar(255),
+	anzahlPlaetze int,
+	
+	CONSTRAINT einheitPK primary key  (zimmerNr)
+);
+CREATE TABLE adresse (
+    plz int not null,
+	stadt varchar(255),
+	strasse varchar(255) not null,
+	hausnummer int not null,
+	land varchar(255) not null,
+	interneID int not null,
+	
+	CONSTRAINT adressePK primary key  (plz, strasse, hausnummer, land)
+);
+CREATE TABLE kontaktdaten (
+    telefonNummer int not null,
+	email varchar(255),
+	fax int,
+	interneID int not null,
+	
+	CONSTRAINT kontaktdatenPK primary key  (telefonNummer)
+);
+CREATE TABLE preis (
+    vonDatum date not null,
+	bisDatum date not null,
+	pensionsTyp varchar(255) not null,
+	
+	CONSTRAINT preisPK primary key  (vonDatum, bisDatum, pensionsTyp)
+);
+CREATE TABLE buchung (
+    buchungsNr int not null,
+	anreiseTag date,
+	abreiseTag date,
+	
+	CONSTRAINT buchungPK primary key  (buchungsNr)
+);
+CREATE TABLE bestehtAus (
+    interneId int not null,
+	zimmerNr  int not null,
+	kategorieNr int not null,
+	vonDatum date not null,
+	bisDatum date not null,
+	pensionstyp varchar(255) not null,
+	
+	CONSTRAINT bestehtAusPK primary key  (interneId, zimmerNr, kategorieNr, vonDatum, bisDatum, pensionstyp)
+);
+
+CREATE TABLE bucht (
+    buchungsNr int not null,
+	svnr int not null,
+	zimmerNr int not null,
+	
+	CONSTRAINT buchtPK primary key  (buchungsNr)
+);
+
+

@@ -1,3 +1,4 @@
+import java.sql.*;
 public class Kontaktdaten{
     String telefon;
     String email;
@@ -15,6 +16,16 @@ public class Kontaktdaten{
             this.fax=resKontaktdaten.getString("fax");
         }
         catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+    public void insertKontaktdaten(Connection connection){
+        String sql = "insert into pg_tables@kontaktdaten values(`"+telefon+"`,`"+email+"`,`"+fax+");";
+        try{
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(sql);
+            statement.close();
+        }catch (SQLException e){
             e.printStackTrace();
         }
     }
