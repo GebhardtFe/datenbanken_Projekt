@@ -1,9 +1,12 @@
+package DBKlassen;
+
 import java.sql.*;
 public class Beherbergungsbetrieb {
     int id;
     String name;
     String website;
     String typ;
+
 
     public Beherbergungsbetrieb(int id, String name, String website, String typ){
         this.id=id;

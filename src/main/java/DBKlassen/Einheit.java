@@ -1,3 +1,5 @@
+package DBKlassen;
+
 import java.sql.*;
 public class Einheit {
     String bezeichnung;

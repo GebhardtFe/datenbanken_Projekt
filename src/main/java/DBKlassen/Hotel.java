@@ -1,5 +1,9 @@
+package DBKlassen;
+
+import DBKlassen.Beherbergungsbetrieb;
+
 import java.sql.*;
-public class Hotel extends Beherbergungsbetrieb{
+public class Hotel extends Beherbergungsbetrieb {
     int anzahlSterne;
 
     public Hotel(int anzahlSterne, int id, String name, String website, String typ){

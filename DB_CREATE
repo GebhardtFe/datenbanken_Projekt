@@ -13,7 +13,7 @@ CREATE TABLE hotel (
 	anzahlSterne int,
 	CONSTRAINT hotelPK primary key  (gastroID)
 );
-CREATE TABLE SocialMedia (
+CREATE TABLE DBKlassen.SocialMedia (
     benutzername varchar(255) not null,
 	passwort varchar(255) not null,
     interneID int not null,
@@ -33,7 +33,7 @@ CREATE TABLE gast (
 	
 	CONSTRAINT gastPK primary key  (svnr)
 );
-CREATE TABLE Kategorie (
+CREATE TABLE DBKlassen.Kategorie (
     kategorieNr int not null,
 	bezeichnung varchar(255),
 	beschreibungstext varchar(255),
@@ -143,11 +143,11 @@ insert into gast(svnr, vorname, nachname, titel, geburtsdatum, plz, strasse, hau
 insert into gast(svnr, vorname, nachname, titel, geburtsdatum, plz, strasse, hausnummer, telefonnummer) values ('4309070376', 'Marta','Grainer', '', '1976-03-07', '1010', 'Wien', 'Ringstrasse', '2', '06605643209');
 insert into gast(svnr, vorname, nachname, titel, geburtsdatum, plz, strasse, hausnummer, telefonnummer) values ('3874040783', 'Sam', 'Martins', 'Bsc. Msc. Msc.','1983-07-04', '2301', 'Wien', 'Adelheidgasse','9', '06990845367');
 
-insert into hotel(gastroid, betriebsname, webseite, typ, anzahlsterne) values ('6', 'Hotel Royale', 'hotelroyalklagenfurt.at', 'Hotel', '5');
-insert into hotel(gastroid, betriebsname, webseite, typ, anzahlsterne) values ('7', 'Hotel Seeblick', 'seeblickfaakersee.at', 'Hotel', '4');
-insert into hotel(gastroid, betriebsname, webseite, typ, anzahlsterne) values ('8', 'Deluxe Hotels Laguna', 'lagunahotelsgrado.uno', 'Hotel', '5');
-insert into hotel(gastroid, betriebsname, webseite, typ, anzahlsterne) values ('9', 'Hotel zur Post', 'hotelzurpostwolfsberg.at','Hotel', '3');
-insert into hotel(gastroid, betriebsname, webseite, typ, anzahlsterne) values ('10', 'Hotel Marquesa', 'marquesamerano.it', 'Hotel','4');
+insert into hotel(gastroid, betriebsname, webseite, typ, anzahlsterne) values ('6', 'DBKlassen.Hotel Royale', 'hotelroyalklagenfurt.at', 'DBKlassen.Hotel', '5');
+insert into hotel(gastroid, betriebsname, webseite, typ, anzahlsterne) values ('7', 'DBKlassen.Hotel Seeblick', 'seeblickfaakersee.at', 'DBKlassen.Hotel', '4');
+insert into hotel(gastroid, betriebsname, webseite, typ, anzahlsterne) values ('8', 'Deluxe Hotels Laguna', 'lagunahotelsgrado.uno', 'DBKlassen.Hotel', '5');
+insert into hotel(gastroid, betriebsname, webseite, typ, anzahlsterne) values ('9', 'DBKlassen.Hotel zur Post', 'hotelzurpostwolfsberg.at','DBKlassen.Hotel', '3');
+insert into hotel(gastroid, betriebsname, webseite, typ, anzahlsterne) values ('10', 'DBKlassen.Hotel Marquesa', 'marquesamerano.it', 'DBKlassen.Hotel','4');
 
 insert into kategorie(kategorienr, bezeichnung, beschreibungstext, anzahlbetten, flaeche) values ('1', 'Standardzimmer', 'Geschmackvoll eingerichtetes Zimmer in familaerer Pension', '1' , '20');
 insert into kategorie(kategorienr, bezeichnung, beschreibungstext, anzahlbetten, flaeche) values ('2','Deluxe Suite', 'Mehr Platz und eine eigene Terasse mit Whirlpool! Unsere Deluxe Suiten bieten einfach mehr.', '1','60');
