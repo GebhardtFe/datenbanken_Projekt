@@ -5,9 +5,10 @@ import DBKlassen.Beherbergungsbetrieb;
 import java.sql.*;
 public class Hotel extends Beherbergungsbetrieb {
     int anzahlSterne;
+    Adresse adresse;
 
-    public Hotel(int anzahlSterne, int id, String name, String website, String typ){
-        super(id, name, website, typ);
+    public Hotel(int anzahlSterne, int id, String name, String website, String typ, Adresse adresse){
+        super(id, name, website, typ, adresse);
         this.anzahlSterne=anzahlSterne;
     }
     public Hotel(ResultSet resHotel){

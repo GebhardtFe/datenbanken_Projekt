@@ -6,13 +6,14 @@ public class Beherbergungsbetrieb {
     String name;
     String website;
     String typ;
+    Adresse adresse;
 
-
-    public Beherbergungsbetrieb(int id, String name, String website, String typ){
-        this.id=id;
-        this.name=name;
-        this.website=website;
-        this.typ=typ;
+    public Beherbergungsbetrieb(int id, String name, String website, String typ, Adresse adresse){
+        this.id = id;
+        this.name = name;
+        this.website = website;
+        this.typ = typ;
+        this.adresse = adresse;
     }
     public Beherbergungsbetrieb(ResultSet resBeherbergungsbetrieb){
 

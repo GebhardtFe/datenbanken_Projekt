@@ -7,6 +7,7 @@ public class Gast {
     String titel;
     String geburtsdatum;
     int svnr;
+    Adresse adresse;
 
     public Gast(String vorname, String nachname, String titel, String geburtsdatum, int svnr){
         this.vorname=vorname;

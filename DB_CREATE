@@ -13,7 +13,7 @@ CREATE TABLE hotel (
 	anzahlSterne int,
 	CONSTRAINT hotelPK primary key  (gastroID)
 );
-CREATE TABLE DBKlassen.SocialMedia (
+CREATE TABLE SocialMedia (
     benutzername varchar(255) not null,
 	passwort varchar(255) not null,
     interneID int not null,
@@ -21,32 +21,33 @@ CREATE TABLE DBKlassen.SocialMedia (
 	CONSTRAINT socialPK primary key  (benutzername, passwort)
 );
 CREATE TABLE gast (
-    svnr int not null,
+    svnr bigint not null,
 	vorname varchar(255),
 	nachname varchar(255),
 	titel varchar(255),
 	geburtsdatum date,
-	plz int not null,
-	strasse varchar(255) not null,
-	hausnummer int not null,
-	telefonnummer int not null,
-	
+	plz int,
+	stadt varchar(255),
+	strasse varchar(255),
+	hausnummer int,
+	telefonnummer varchar(60),
+
 	CONSTRAINT gastPK primary key  (svnr)
 );
-CREATE TABLE DBKlassen.Kategorie (
+CREATE TABLE Kategorie (
     kategorieNr int not null,
 	bezeichnung varchar(255),
 	beschreibungstext varchar(255),
 	anzahlBetten int,
-	flaeche float, 
-	
+	flaeche float,
+
 	CONSTRAINT kategoriePK primary key  (kategorieNr)
 );
 CREATE TABLE einheit (
     zimmerNr int not null,
 	bezeichnung varchar(255),
 	anzahlPlaetze int,
-	
+
 	CONSTRAINT einheitPK primary key  (zimmerNr)
 );
 CREATE TABLE adresse (
@@ -56,29 +57,29 @@ CREATE TABLE adresse (
 	hausnummer int not null,
 	land varchar(255) not null,
 	interneID int not null,
-	
+
 	CONSTRAINT adressePK primary key  (plz, strasse, hausnummer, land)
 );
 CREATE TABLE kontaktdaten (
-    telefonNummer int not null,
+    telefonNummer varchar(60) not null,
 	email varchar(255),
-	fax int,
+	fax varchar(60),
 	interneID int not null,
-	
+
 	CONSTRAINT kontaktdatenPK primary key  (telefonNummer)
 );
 CREATE TABLE preis (
     vonDatum date not null,
 	bisDatum date not null,
 	pensionsTyp varchar(255) not null,
-	
+
 	CONSTRAINT preisPK primary key  (vonDatum, bisDatum, pensionsTyp)
 );
 CREATE TABLE buchung (
     buchungsNr int not null,
 	anreiseTag date,
 	abreiseTag date,
-	
+
 	CONSTRAINT buchungPK primary key  (buchungsNr)
 );
 CREATE TABLE bestehtAus (
@@ -88,15 +89,15 @@ CREATE TABLE bestehtAus (
 	vonDatum date not null,
 	bisDatum date not null,
 	pensionstyp varchar(255) not null,
-	
+
 	CONSTRAINT bestehtAusPK primary key  (interneId, zimmerNr, kategorieNr, vonDatum, bisDatum, pensionstyp)
 );
 
 CREATE TABLE bucht (
     buchungsNr int not null,
-	svnr int not null,
+	svnr bigint not null,
 	zimmerNr int not null,
-	
+
 	CONSTRAINT buchtPK primary key  (buchungsNr)
 );
 
@@ -116,7 +117,7 @@ insert into bestehtaus(interneid, zimmernr, kategorienr, vondatum, bisdatum, pen
 insert into bestehtaus(interneid, zimmernr, kategorienr, vondatum, bisdatum, pensionstyp) values('2', '16', '2','2021-03-01','2021-03-06','Vollpension');
 insert into bestehtaus(interneid, zimmernr, kategorienr, vondatum, bisdatum, pensionstyp) values('2', '11', '2','2021-06-20','2021-07-01','Vollpension');
 insert into bestehtaus(interneid, zimmernr, kategorienr, vondatum, bisdatum, pensionstyp) values('3', '1', '3','2021-05-03','2021-05-08', 'Frühstück');
-insert into bestehtaus(interneid, zimmernr, kategorienr, vondatum, bisdatum, pensionstyp) values('5', '2', '4','2021-04-31','2021-05-16','ohne');
+insert into bestehtaus(interneid, zimmernr, kategorienr, vondatum, bisdatum, pensionstyp) values('5', '2', '4','2021-04-29','2021-05-16','ohne');
 
 
 insert into bucht(buchungsnr, svnr, zimmernr) values ('01','2345121268','5');
@@ -129,7 +130,7 @@ insert into buchung(buchungsnr, anreisetag, abreisetag) values ('01','2021-06-12
 insert into buchung(buchungsnr, anreisetag, abreisetag) values ('02','2021-03-01','2021-03-06');
 insert into buchung(buchungsnr, anreisetag, abreisetag) values ('03','2021-06-20','2021-07-01');
 insert into buchung(buchungsnr, anreisetag, abreisetag) values ('04','2021-05-03','2021-05-08');
-insert into buchung(buchungsnr, anreisetag, abreisetag) values ('05','2021-04-31','2021-05-16');
+insert into buchung(buchungsnr, anreisetag, abreisetag) values ('05','2021-04-29','2021-05-16');
 
 insert into einheit(zimmernr, bezeichnung, anzahlplaetze) values('5', 'Standardzimmer', '2');
 insert into einheit(zimmernr, bezeichnung, anzahlplaetze) values('16', 'Deluxe Suite','2');
@@ -137,29 +138,29 @@ insert into einheit(zimmernr, bezeichnung, anzahlplaetze) values('11','Deluxe Su
 insert into einheit(zimmernr, bezeichnung, anzahlplaetze) values('1', 'Komfort Apartment', '4');
 insert into einheit(zimmernr, bezeichnung, anzahlplaetze) values('2', 'Basisangebot', '8');
 
-insert into gast(svnr, vorname, nachname, titel, geburtsdatum, plz, strasse, hausnummer, telefonnummer) values ('2345121268', 'Hans', 'Kautz', '', '1968-12-12', '9020', 'Klagenfurt', 'Waldweg' ,'3', '0660654783201');
-insert into gast(svnr, vorname, nachname, titel, geburtsdatum, plz, strasse, hausnummer, telefonnummer) values ('6745010574', 'Paula', 'Hofer', 'Dr.', '1974-05-01', '3441', 'Oberndorf', 'Kernstrasse', '6', '06643209987');
-insert into gast(svnr, vorname, nachname, titel, geburtsdatum, plz, strasse, hausnummer, telefonnummer) values ('7882301092', 'August', 'Zeppelin', 'Dipl.-Ing.','1992-10-30', '8010', 'Graz', 'Rasterplatz', '17', '069940301023');
-insert into gast(svnr, vorname, nachname, titel, geburtsdatum, plz, strasse, hausnummer, telefonnummer) values ('4309070376', 'Marta','Grainer', '', '1976-03-07', '1010', 'Wien', 'Ringstrasse', '2', '06605643209');
-insert into gast(svnr, vorname, nachname, titel, geburtsdatum, plz, strasse, hausnummer, telefonnummer) values ('3874040783', 'Sam', 'Martins', 'Bsc. Msc. Msc.','1983-07-04', '2301', 'Wien', 'Adelheidgasse','9', '06990845367');
+insert into gast(svnr, vorname, nachname, titel, geburtsdatum, plz, stadt, strasse, hausnummer, telefonnummer) values ('2345121268', 'Hans', 'Kautz', '', '1968-12-12', '9020', 'Klagenfurt', 'Waldweg' ,'3', '0660654783201');
+insert into gast(svnr, vorname, nachname, titel, geburtsdatum, plz, stadt, strasse, hausnummer, telefonnummer) values ('6745010574', 'Paula', 'Hofer', 'Dr.', '1974-05-01', '3441', 'Oberndorf', 'Kernstrasse', '6', '06643209987');
+insert into gast(svnr, vorname, nachname, titel, geburtsdatum, plz, stadt, strasse, hausnummer, telefonnummer) values ('7882301092', 'August', 'Zeppelin', 'Dipl.-Ing.','1992-10-30', '8010', 'Graz', 'Rasterplatz', '17', '069940301023');
+insert into gast(svnr, vorname, nachname, titel, geburtsdatum, plz, stadt, strasse, hausnummer, telefonnummer) values ('4309070376', 'Marta','Grainer', '', '1976-03-07', '1010', 'Wien', 'Ringstrasse', '2', '06605643209');
+insert into gast(svnr, vorname, nachname, titel, geburtsdatum, plz, stadt, strasse, hausnummer, telefonnummer) values ('3874040783', 'Sam', 'Martins', 'Bsc. Msc. Msc.','1983-07-04', '2301', 'Wien', 'Adelheidgasse','9', '06990845367');
 
-insert into hotel(gastroid, betriebsname, webseite, typ, anzahlsterne) values ('6', 'DBKlassen.Hotel Royale', 'hotelroyalklagenfurt.at', 'DBKlassen.Hotel', '5');
-insert into hotel(gastroid, betriebsname, webseite, typ, anzahlsterne) values ('7', 'DBKlassen.Hotel Seeblick', 'seeblickfaakersee.at', 'DBKlassen.Hotel', '4');
-insert into hotel(gastroid, betriebsname, webseite, typ, anzahlsterne) values ('8', 'Deluxe Hotels Laguna', 'lagunahotelsgrado.uno', 'DBKlassen.Hotel', '5');
-insert into hotel(gastroid, betriebsname, webseite, typ, anzahlsterne) values ('9', 'DBKlassen.Hotel zur Post', 'hotelzurpostwolfsberg.at','DBKlassen.Hotel', '3');
-insert into hotel(gastroid, betriebsname, webseite, typ, anzahlsterne) values ('10', 'DBKlassen.Hotel Marquesa', 'marquesamerano.it', 'DBKlassen.Hotel','4');
+insert into hotel(gastroid, betriebName, webseite, typ, anzahlsterne) values ('6', 'DBKlassen.Hotel Royale', 'hotelroyalklagenfurt.at', 'DBKlassen.Hotel', '5');
+insert into hotel(gastroid, betriebName, webseite, typ, anzahlsterne) values ('7', 'DBKlassen.Hotel Seeblick', 'seeblickfaakersee.at', 'DBKlassen.Hotel', '4');
+insert into hotel(gastroid, betriebName, webseite, typ, anzahlsterne) values ('8', 'Deluxe Hotels Laguna', 'lagunahotelsgrado.uno', 'DBKlassen.Hotel', '5');
+insert into hotel(gastroid, betriebName, webseite, typ, anzahlsterne) values ('9', 'DBKlassen.Hotel zur Post', 'hotelzurpostwolfsberg.at','DBKlassen.Hotel', '3');
+insert into hotel(gastroid, betriebName, webseite, typ, anzahlsterne) values ('10', 'DBKlassen.Hotel Marquesa', 'marquesamerano.it', 'DBKlassen.Hotel','4');
 
 insert into kategorie(kategorienr, bezeichnung, beschreibungstext, anzahlbetten, flaeche) values ('1', 'Standardzimmer', 'Geschmackvoll eingerichtetes Zimmer in familaerer Pension', '1' , '20');
 insert into kategorie(kategorienr, bezeichnung, beschreibungstext, anzahlbetten, flaeche) values ('2','Deluxe Suite', 'Mehr Platz und eine eigene Terasse mit Whirlpool! Unsere Deluxe Suiten bieten einfach mehr.', '1','60');
-insert into kategorie(kategorienr, bezeichnung, beschreibungstext, anzahlbetten, flaeche) values ('3','Komfort Apartment', 'Stilvolle Apartments mit exquisiter Ausstattung', '3', '104);
+insert into kategorie(kategorienr, bezeichnung, beschreibungstext, anzahlbetten, flaeche) values ('3','Komfort Apartment', 'Stilvolle Apartments mit exquisiter Ausstattung', '3', '104');
 insert into kategorie(kategorienr, bezeichnung, beschreibungstext, anzahlbetten, flaeche) values('4', 'Basisangebot' , 'Zweistoekiges Ferienhaus mit eigenem Garten', '8', 130);
 insert into kategorie(kategorienr, bezeichnung, beschreibungstext, anzahlbetten, flaeche) values ('5', 'Familiensuite', 'Extra Kinderzimmer für den Nachwuchs', '3', '40');
 
 insert into kontaktdaten(telefonnummer, email, fax, interneid) values ('069970804032', 'villasofia@gmail.com', '1485893838', '1');
 insert into kontaktdaten(telefonnummer, email, fax, interneid) values ('+39784078920', 'rezeption@veronaapartments.it', '43733737', '2');
-insert into kontaktdaten(telefonnummer, email, fax, interneid) values ('066489382022', 'ferienapartmentamlendhafen@gmx.at', '3');
-insert into kontaktdaten(telefonnummer, email, fax, interneid) values ('00386 34097863', 'ribnoapartment@gmail.com', '4');
-insert into kontaktdaten(telefonnummer, email, fax, interneid) values ('06653393733', 'ferienhausebner@gmail.com', '5');
+insert into kontaktdaten(telefonnummer, email, fax, interneid) values ('066489382022', 'ferienapartmentamlendhafen@gmx.at', null, '3');
+insert into kontaktdaten(telefonnummer, email, fax, interneid) values ('00386 34097863', 'ribnoapartment@gmail.com', null, '4');
+insert into kontaktdaten(telefonnummer, email, fax, interneid) values ('06653393733', 'ferienhausebner@gmail.com', null, '5');
 
 insert into preis (vondatum, bisdatum, pensionstyp) values ('2021-06-12','2021-06-19','Halbpension');
 insert into preis (vondatum, bisdatum, pensionstyp) values ('2021-03-01','2021-03-06','Vollpension');
